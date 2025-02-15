@@ -15,12 +15,12 @@ class Vehicle extends CI_Controller {
 	public function index()
 	{
 		$data['vehiclelist'] = $this->vehicle_model->getall_vehicle();
-		$this->template->template_render('vehicle_management',$data);
+		$this->template->template_render('vehicle_management', $data);
 	}
 	public function addvehicle()
 	{
 		$data['v_group'] = $this->vehicle_model->get_vehiclegroup();
-		$this->template->template_render('vehicle_add',$data);
+		$this->template->template_render('vehicle_add', $data);
 	}
 	public function insertvehicle()
 	{
@@ -36,7 +36,7 @@ class Vehicle extends CI_Controller {
 		if($this->form_validation->run()==TRUE && $testxss){
 			$response = $this->vehicle_model->add_vehicle($this->input->post());
 			if($response) {
-				
+				$this->session->set_flashdata('successmessage', 'New vehicle added successfully..');
 				redirect('vehicle');
 			}
 		} else	{
