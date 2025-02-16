@@ -44,7 +44,7 @@ class Vehicle extends CI_Controller {
 			}
 		} else	{
 			$errormsg = validation_errors();
-			if(!$testxss) {
+			if(!$testxs) {
 				$errormsg = 'Error! Your input are not allowed.Please try again';
 			}
 			$this->session->set_flashdata('warningmessage',$errormsg);
