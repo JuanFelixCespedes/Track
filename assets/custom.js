@@ -1,8 +1,9 @@
 $(document).ready(function() {   
  "use strict";
+
   $.validator.setDefaults({
-    submitHandler: function () {
-      Form.submit();
+    submitHandler: function (form) {
+      form.submit();
     }
   });
 
