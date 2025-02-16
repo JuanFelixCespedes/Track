@@ -5,6 +5,7 @@ class vehicle_model extends CI_Model{
 	public function add_vehicle($data) { 
 		return $this->db->insert('vehicles', $data);
 	} 
+	
     public function getall_vehicle() {
       $this->db->select("*");
 	  $this->db->from('vehicles');
