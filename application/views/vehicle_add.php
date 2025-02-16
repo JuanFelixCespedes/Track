@@ -22,7 +22,7 @@
 
 
                   <div class="row">
-                   <input type="text" name="v_id" id="v_id" value="<?php echo (isset($vehicledetails)) ? $vehicledetails[0]['v_id']:'' ?>" >
+                   <input type="hidden" name="v_id" id="v_id" value="<?php echo (isset($vehicledetails)) ? $vehicledetails[0]['v_id']:'' ?>" >
 
                     <div class="col-sm-6 col-md-4">
                         <label class="form-label">Registration Number</label>
