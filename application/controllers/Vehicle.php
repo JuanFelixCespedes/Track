@@ -44,10 +44,7 @@ class Vehicle extends CI_Controller {
 			}
 		} else	{
 			$response = $this -> vehicle_model -> add_vehicle($this->input->post());
-			if( $response) {
-				$this->session->set_flashdata('successmessage', 'New vehicle added successfully..');
-				redirect('vehicle');
-			}
+			
 		}
 
 	}
