@@ -38,13 +38,14 @@ class Vehicle extends CI_Controller {
 
 		if($this->form_validation->run() == TRUE && $testxss){			
 			$response = $this->vehicle_model->add_vehicle($this->input->post());
+			log_message('info', 'Response from add_vehicle: ' . print_r($response, true));
 			if($response) {
 				$this->session->set_flashdata('successmessage','New vehicle added successfully..');
 				redirect('vehicle');
 			}
 		} else	{
 			$errormsg = validation_errors();
-			if(!$testxs) {
+			if(!$testxss) {
 				$errormsg = 'Error! Your input are not allowed.Please try again';
 			}
 			$this->session->set_flashdata('warningmessage',$errormsg);
