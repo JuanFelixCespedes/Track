@@ -3,7 +3,6 @@
 class vehicle_model extends CI_Model{
 	
 	public function add_vehicle($data) { 
-
 		return $this->db->insert('vehicles',$data);
 	} 
 
