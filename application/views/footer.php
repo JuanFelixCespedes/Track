@@ -50,7 +50,7 @@
    src="https://maps.google.com/maps/api/js?key=<?php echo output($data['s_googel_api_key']); ?>&sensor=false&v=3.21.5a&libraries=drawing&signed_in=true&libraries=places,drawing"></script>
 <script src="<?php echo base_url(); ?>assets/distance_calculator.js"></script>
 <?php } ?>
-
+<script src="<?= base_url(); ?>assets/custom.js?v=<?=mt_rand(); ?>"></script>
 <?php 
    if($seg=='addgeofence') { ?>
 <script src="<?php echo base_url(); ?>assets/geofence.js"></script>
