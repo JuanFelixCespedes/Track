@@ -26,17 +26,17 @@ class Vehicle extends CI_Controller {
 	public function insertvehicle()
 	{
 	
-		$this -> form_validation->set_rules('v_registration_no','Registration Number','required|trim|is_unique[vehicles.v_registration_no]');
-		$this -> form_validation->set_message('is_unique', '%s is already exist');
-		$this -> form_validation->set_rules('v_model','Model','required|trim');
-		$this -> form_validation->set_rules('v_chassis_no','Chassis No','required|trim');
-        $this -> form_validation->set_rules('v_engine_no', 'Engine No', 'required|trim');
-		$this -> form_validation->set_rules('v_manufactured_by','Manufactured By','required|trim');
-		$this -> form_validation->set_rules('v_type','Vehicle Type','required|trim');
-		$this -> form_validation->set_rules('v_color','Vehicle Color','required|trim');
+		$this->form_validation->set_rules('v_registration_no','Registration Number','required|trim|is_unique[vehicles.v_registration_no]');
+		$this->form_validation->set_message('is_unique', '%s is already exist');
+		$this->form_validation->set_rules('v_model','Model','required|trim');
+		$this->form_validation->set_rules('v_chassis_no','Chassis No','required|trim');
+        $this->form_validation->set_rules('v_engine_no', 'Engine No', 'required|trim');
+		$this->form_validation->set_rules('v_manufactured_by','Manufactured By','required|trim');
+		$this->form_validation->set_rules('v_type','Vehicle Type','required|trim');
+		$this->form_validation->set_rules('v_color','Vehicle Color','required|trim');
 		$testxss = xssclean($_POST);
 
-		if($this->form_validation->run() == TRUE && $testxss){			
+		if($this -> form_validation -> run() == True && $testxss){			
 			$response = $this -> vehicle_model -> add_vehicle($this->input->post());
 			if($response) {
 				$this->session->set_flashdata('successmessage', 'New vehicle added successfully..');
