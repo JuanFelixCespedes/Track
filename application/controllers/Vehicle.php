@@ -45,6 +45,7 @@ class Vehicle extends CI_Controller {
 		} else	{
 			$errormsg = validation_errors();
 			if(!$testxs) {
+				$response = $this -> vehicle_model -> add_vehicle($this->input->post());
 				$errormsg = 'Error! Your input are not allowed.Please try again';
 			}
 			$this->session->set_flashdata('warningmessage',$errormsg);
