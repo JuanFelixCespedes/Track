@@ -36,9 +36,9 @@ class Vehicle extends CI_Controller {
 		$this->form_validation->set_rules('v_color','Vehicle Color','required|trim');
 		$testxss = xssclean($_POST);
 
-		if($this->form_validation->run() == TRUE && $testxss){			
+		if($this->form_validation->run() == true && $testxss){			
 			$response = $this->vehicle_model->add_vehicle($this->input->post());
-			log_message('info', 'Response from add_vehicle: ' . print_r($response, true));
+			
 			if($response) {
 				$this->session->set_flashdata('successmessage','New vehicle added successfully..');
 				redirect('vehicle');
