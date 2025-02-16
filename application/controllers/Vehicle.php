@@ -37,10 +37,10 @@ class Vehicle extends CI_Controller {
 		$testxss = xssclean($_POST);
 
 		if($this->form_validation->run() == TRUE && $testxss){			
-			$response=$this->vehicle_model->add_vehicle($this->input->post());
+			$response = $this->vehicle_model->add_vehicle($this->input->post());
 			if($response) {
 				$this->session->set_flashdata('successmessage', 'New vehicle added successfully..');
-				redirect('vehicle');
+			
 			}
 		} else	{
 			$errormsg = validation_errors();
@@ -50,6 +50,7 @@ class Vehicle extends CI_Controller {
 			$this->session->set_flashdata('warningmessage',$errormsg);
 			redirect('vehicle/addvehicle');
 		}
+
 	}
 	public function editvehicle()
 	{
