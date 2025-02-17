@@ -20,7 +20,7 @@ class Vehicle extends CI_Controller {
 	public function addvehicle()
 	{
 		$data['v_group'] = $this->vehicle_model->get_vehiclegroup();
-		$this->template->template_render('vehicle_add', $data);
+		$this->template->template_render('vehicle_add',$data);
 	}
 
 	public function insertvehicle()
@@ -37,8 +37,8 @@ class Vehicle extends CI_Controller {
 		$testxss = xssclean($_POST);
 
 		if($this -> form_validation -> run() == false && $testxss){			
-			$response = $this -> vehicle_model -> add_vehicle($this->input->post($data));
-			if(  $response) {
+			$response = $this -> vehicle_model -> add_vehicle($this->input->post());
+			if($response) {
 				$this->session->set_flashdata('successmessage', 'New vehicle added successfully..');
 				redirect('vehicle');
 			}
