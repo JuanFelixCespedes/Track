@@ -24,37 +24,34 @@ class Vehicle extends CI_Controller {
 	}
 
 	public function insertvehicle()
-{
-    $this->form_validation->set_rules('v_registration_no', 'Registration Number', 'required|trim|is_unique[vehicles.v_registration_no]');
-    $this->form_validation->set_message('is_unique', '%s already exists');
-    $this->form_validation->set_rules('v_model', 'Model', 'required|trim');
-    $this->form_validation->set_rules('v_chassis_no', 'Chassis No', 'required|trim');
-    $this->form_validation->set_rules('v_engine_no', 'Engine No', 'required|trim');
-    $this->form_validation->set_rules('v_manufactured_by', 'Manufactured By', 'required|trim');
-    $this->form_validation->set_rules('v_type', 'Vehicle Type', 'required|trim');
-    $this->form_validation->set_rules('v_color', 'Vehicle Color', 'required|trim');
-    
-    $testxss = xssclean($this->input->post());
+	{
+	
+		$this->form_validation->set_rules('v_registration_no','Registration Number','required|trim|is_unique[vehicles.v_registration_no]');
+		$this->form_validation->set_message('is_unique', '%s is already exist');
+		$this->form_validation->set_rules('v_model','Model','required|trim');
+		$this->form_validation->set_rules('v_chassis_no','Chassis No','required|trim');
+        $this->form_validation->set_rules('v_engine_no', 'Engine No', 'required|trim');
+		$this->form_validation->set_rules('v_manufactured_by','Manufactured By','required|trim');
+		$this->form_validation->set_rules('v_type','Vehicle Type','required|trim');
+		$this->form_validation->set_rules('v_color','Vehicle Color','required|trim');
+		$testxss = xssclean($_POST);
 
-    if ($this->form_validation->run() == true && $testxss) {
-        $data = $this->input->post();
-        $response = $this->vehicle_model->add_vehicle($data);
-        if ($response) {
-            $this->session->set_flashdata('successmessage', 'New vehicle added successfully.');
-            redirect('vehicle');
-        } else {
-            $this->session->set_flashdata('warningmessage', 'Error inserting vehicle. Please try again.');
-            redirect('vehicle/addvehicle');
-        }
-    } else {
-        $errormsg = validation_errors();
-        if (!$testxss) {
-            $errormsg = 'Error! Your input is not allowed. Please try again.';
-        }
-        $this->session->set_flashdata('warningmessage', $errormsg);
-        redirect('vehicle/addvehicle');
-    }
-}
+		if($this -> form_validation -> run() == false && $testxss){			
+			$response = $this -> vehicle_model -> add_vehicle($this->input->post($data));
+			if(  $response) {
+				$this->session->set_flashdata('successmessage', 'New vehicle added successfully..');
+				redirect('vehicle');
+			}
+		} else	{
+			$errormsg = validation_errors();
+			if(!$testxss) {
+				$errormsg = 'Error! Your input are not allowed.Please try again';
+			}
+			$this->session->set_flashdata('warningmessage',$errormsg);
+			redirect('vehicle/addvehicle');
+		}
+
+	}
 	public function editvehicle()
 	{
 		$v_id = $this->uri->segment(3);
