@@ -2,15 +2,9 @@
 
 class vehicle_model extends CI_Model{
 	
-	public function add_vehicle($data) { 
-		if ($this->db->insert('vehicles', $data)) {
-			return true; // Inserción exitosa
-		} else {
-			// Log del error para depuración
-			log_message('error', 'Database Insert Error: ' . $this->db->last_query() . ' - Error: ' . print_r($this->db->error(), true));
-			return false; // Inserción fallida
-		}
-	}
+	function add_vehicle($data) { 
+		return $this->db->insert('vehicles',$data);
+	} 
 
     public function getall_vehicle() {
       $this->db->select("*");
