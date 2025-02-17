@@ -36,9 +36,9 @@ class Vehicle extends CI_Controller {
     
     $testxss = xssclean($this->input->post());
 
-    // Verifica si la validación es exitosa y si los datos han pasado la limpieza XSS
     if ($this->form_validation->run() == true && $testxss) {
-        $response = $this->vehicle_model->add_vehicle($this->input->post());
+        $data = $this->input->post();
+        $response = $this->vehicle_model->add_vehicle($data);
         if ($response) {
             $this->session->set_flashdata('successmessage', 'New vehicle added successfully.');
             redirect('vehicle');
@@ -47,7 +47,6 @@ class Vehicle extends CI_Controller {
             redirect('vehicle/addvehicle');
         }
     } else {
-        // Manejo de errores de validación
         $errormsg = validation_errors();
         if (!$testxss) {
             $errormsg = 'Error! Your input is not allowed. Please try again.';
